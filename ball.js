@@ -7,7 +7,6 @@ class Ball{
 		this.size= 30;
 		this.color= 'white';
 		this.killCount = 0;
-		//at some point i want to make it so that the balls change color when their kill count is 10 or higher
 		
 	}
 	init(canvas){
@@ -19,6 +18,8 @@ class Ball{
 		
 	}
 	render(ctx){
+		if(this.killCount>=10)this.color = 'red';
+		else this.color = 'white';
 		ctx.fillStyle = this.color;
 		ctx.beginPath();
 		ctx.arc(this.xPos,this.yPos,this.size,0,Math.PI*2,true)
@@ -98,27 +99,27 @@ class Ball{
 			if(bricks[i].markedForDeletion===false){
 				if(this.xPos+this.size >= bricks[i].xPos-.5 && this.xPos+this.size <=bricks[i].xPos+.5&&this.yPos+this.size/2>=bricks[i].yPos&&this.yPos+this.size/2<=bricks[i].yPos+bricks[i].height){
 					this.xVel= this.xVel*-1;
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 				}
 				else if(this.xPos-this.size >= bricks[i].xPos-.5+bricks[i].width && this.xPos-this.size<=bricks[i].xPos+.5+bricks[i].width&&this.yPos+this.size/2>=bricks[i].yPos&&this.yPos+this.size/2<=bricks[i].yPos+bricks[i].height){
 					this.xVel= this.xVel*-1;
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 					
 				}
 				else if((this.yPos-this.size <= bricks[i].yPos+.5+bricks[i].height &&this.yPos-this.size>= bricks[i].yPos-.5+bricks[i].height&&(this.xPos>=bricks[i].xPos)&&(this.xPos<=bricks[i].xPos+bricks[i].width))){
 					this.yVel= this.yVel*-1;
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 				}
 				else if(this.yPos+this.size <= bricks[i].yPos+.5 &&this.yPos+this.size>= bricks[i].yPos-.5&&(this.xPos>=bricks[i].xPos)&&(this.xPos<=bricks[i].xPos+bricks[i].width)){
 					this.yVel= this.yVel*-1;
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos,bricks[i].yPos,this.size)){
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel>0){
 						this.xVel= this.xVel*-1;
@@ -128,7 +129,7 @@ class Ball{
 					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos+bricks[i].width,bricks[i].yPos,this.size)){
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel<0){
 						this.xVel= this.xVel*-1;
@@ -138,7 +139,7 @@ class Ball{
 					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos,bricks[i].yPos+bricks[i].height,this.size)){
-					bricks[i].markedForDeletion = true;
+					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel>0){
 						this.xVel= this.xVel*-1;
@@ -148,7 +149,7 @@ class Ball{
 					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos+bricks[i].width,bricks[i].yPos+bricks[i].height,this.size)){
-					bricks[i].markedForDeletion = true
+					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel<0){
 						this.xVel= this.xVel*-1;

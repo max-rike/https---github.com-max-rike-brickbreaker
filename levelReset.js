@@ -2,6 +2,8 @@ function Reset(){
     
     balls[0].xPos = canvas.width/2
     balls[0].yPos = canvas.height/2
+    balls[0].xVel = .12;
+    balls[0].yVel = .12;
     
     brickCount += 12
     spawner(brickCount);
