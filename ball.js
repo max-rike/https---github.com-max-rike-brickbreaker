@@ -52,20 +52,14 @@ class Ball{
 			if(this.yVel<0){
 				this.yVel= this.yVel*-1;
 			}
-			if(this.killCount>=10){
-				BallDoubler(this.xPos,this.yPos,this.xVel,this.yVel)
-				this.killCount-=10
-			}
+			
 			}
 
 		else if(this.yPos+this.size <= paddl.yPos+.5 &&this.yPos+this.size>= paddl.yPos-.5&&(this.xPos>=paddl.xPos)&&(this.xPos<=paddl.xPos+paddl.width)){
 			if(this.yVel>0){
 				this.yVel= this.yVel*-1;
 			}
-			if(this.killCount>=10){
-				BallDoubler(this.xPos,this.yPos,this.xVel,this.yVel)
-				this.killCount-=10
-			}
+			
 		}
 		else if(PointWithin(this.xPos,this.yPos,paddl.xPos+paddl.width,paddl.yPos,this.size)){
 			if(this.xVel<0){
@@ -93,32 +87,38 @@ class Ball{
 			}
 
 
-
-		//check top and bottoms of the bricks and the corners
 		for(i = 0;i<bricks.length;i++){
 			if(bricks[i].markedForDeletion===false){
 				if(this.xPos+this.size >= bricks[i].xPos-.5 && this.xPos+this.size <=bricks[i].xPos+.5&&this.yPos+this.size/2>=bricks[i].yPos&&this.yPos+this.size/2<=bricks[i].yPos+bricks[i].height){
+					if(bricks[i].beenHit===false){
 					this.xVel= this.xVel*-1;
 					bricks[i].health--;
 					this.killCount++;
+					}
 				}
 				else if(this.xPos-this.size >= bricks[i].xPos-.5+bricks[i].width && this.xPos-this.size<=bricks[i].xPos+.5+bricks[i].width&&this.yPos+this.size/2>=bricks[i].yPos&&this.yPos+this.size/2<=bricks[i].yPos+bricks[i].height){
+					if(bricks[i].beenHit===false){
 					this.xVel= this.xVel*-1;
 					bricks[i].health--;
 					this.killCount++;
-					
+					}
 				}
 				else if((this.yPos-this.size <= bricks[i].yPos+.5+bricks[i].height &&this.yPos-this.size>= bricks[i].yPos-.5+bricks[i].height&&(this.xPos>=bricks[i].xPos)&&(this.xPos<=bricks[i].xPos+bricks[i].width))){
+					if(bricks[i].beenHit===false){
 					this.yVel= this.yVel*-1;
 					bricks[i].health--;
 					this.killCount++;
+					}
 				}
 				else if(this.yPos+this.size <= bricks[i].yPos+.5 &&this.yPos+this.size>= bricks[i].yPos-.5&&(this.xPos>=bricks[i].xPos)&&(this.xPos<=bricks[i].xPos+bricks[i].width)){
+					if(bricks[i].beenHit===false){
 					this.yVel= this.yVel*-1;
 					bricks[i].health--;
 					this.killCount++;
+					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos,bricks[i].yPos,this.size)){
+					if(bricks[i].beenHit===false){
 					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel>0){
@@ -126,9 +126,11 @@ class Ball{
 					}
 					if(this.yVel>0){
 						this.yVel= this.yVel*-1;
+					}
 					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos+bricks[i].width,bricks[i].yPos,this.size)){
+					if(bricks[i].beenHit===false){
 					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel<0){
@@ -137,8 +139,10 @@ class Ball{
 					if(this.yVel>0){
 						this.yVel= this.yVel*-1;
 					}
+					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos,bricks[i].yPos+bricks[i].height,this.size)){
+					if(bricks[i].beenHit===false){
 					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel>0){
@@ -147,8 +151,10 @@ class Ball{
 					if(this.yVel<0){
 						this.yVel= this.yVel*-1;
 					}
+					}
 				}
 				else if(PointWithin(this.xPos,this.yPos,bricks[i].xPos+bricks[i].width,bricks[i].yPos+bricks[i].height,this.size)){
+					if(bricks[i].beenHit===false){
 					bricks[i].health--;
 					this.killCount++;
 					if(this.xVel<0){
@@ -156,6 +162,7 @@ class Ball{
 					}
 					if(this.yVel<0){
 						this.yVel= this.yVel*-1;
+					}
 					}
 				}
 			}

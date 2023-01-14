@@ -12,8 +12,8 @@ function Reset(){
 }
 
 function BallDoubler(xpos,ypos,x,y){
-    DoublerX = xpos;
-    Doublery = ypos;
+    DoublerX = xpos+5;
+    Doublery = ypos+5;
     xVel = x;
     yVel = y;
     yVel = yVel *-1;

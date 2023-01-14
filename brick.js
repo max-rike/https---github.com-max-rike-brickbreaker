@@ -7,6 +7,7 @@ class brick{
         this.width = 30;
 		this.color= 'white';
 		this.markedForDeletion = false;
+		this.beenHit = false;
 		
 	}
     init(canvas){
@@ -20,6 +21,7 @@ class brick{
         if(this.markedForDeletion===true){
             bricks.splice(i,1);
         }
+		if(this.beenHit===true)this.beenHit=false;
     }
     render(ctx){
 		if(this.health===3) this.color = 'black'

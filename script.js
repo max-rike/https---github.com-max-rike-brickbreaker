@@ -8,7 +8,8 @@ let bricks = [];
 actionKeys = [];
 inactionKeys = [];
 
-//make sure bounce isnt taking off multiple levels
+// balls spawn going the exact same way as the one before when it hits the corners fs
+//think i fixed it
 
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
