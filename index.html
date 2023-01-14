@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<canvas id="canvas" style = 'display:none'></canvas>
+	<title>Gameloop</title>
+	<script src="ball.js"></script>
+	<script src="brick.js"></script>
+	<script src="brickspawner.js"></script>
+	<script src="paddle.js"></script>
+	<script src="gameloop.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet"  href="style.css">
+
+</head>
+<body>
+	<div id ='start-screen' class= 'screen' style = 'display:block'>
+		<button onclick='startGame()'>Start Game</button>
+		<button onclick='settings()'>Settings</button>
+	</div>
+	
+	<div id='setting-screen' class = 'screen' style = 'display: none;'>
+		<button onclick="returnToMain()">Back</button>
+	</div>
+	
+</body>
+</html>
