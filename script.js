@@ -1,7 +1,7 @@
 let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
-let brickCount = 96
+let brickCount = 1
 let paddl = new paddle(30,400);
 let balls = [];
 let bricks = [];
@@ -19,8 +19,8 @@ gameloop.init = function(){
 gameloop.update = function(){
 	if(bricks.length>0){
 		for(j=40; j >=0;j--){
-		for(i=0;i<balls.length;i++){	
-		balls[i].update(canvas);
+		for(k=0;k<balls.length;k++){		
+		balls[k].update(canvas);
 		}
 		paddl.update(canvas);
 		for(i=0;i<bricks.length;i++){
@@ -29,7 +29,9 @@ gameloop.update = function(){
 		}
 	}
 	else{
-		balls.splice(0,balls.length)
+		if(balls.length>1)balls.splice(1,balls.length-1)
+		
+		console.log(balls.length)
 		Reset();
 	}
 }
