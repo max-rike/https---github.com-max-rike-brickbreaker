@@ -1,16 +1,17 @@
 let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
-let brickCount = 20
+let brickCount = 20;
+let score = 0;
 let paddl = new paddle(30,400);
 let balls = [];
 let bricks = [];
 actionKeys = [];
 inactionKeys = [];
 
-// balls spawn going the exact same way as the one before when it hits the corners fs
-//think i fixed it
-
+//next update the spawner to more randomized set ups, and when a limit of bricks are spawned bricks start getting more health
+//put a breif break in between levels  balls speed up netween levels or over time
+//balls ocasionally break two bricks
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
 	balls[i].init(gameloop.canvas);
@@ -20,8 +21,9 @@ gameloop.init = function(){
 gameloop.update = function(){
 	if(bricks.length>0){
 		for(j=40; j >=0;j--){
-		for(k=0;k<balls.length;k++){		
-		balls[k].update(canvas);
+		for(k=0;k<balls.length;k++){
+			if(balls[k].markedForDeletion===true)balls.splice(k,1)
+			else balls[k].update(canvas)
 		}
 		paddl.update(canvas);
 		for(i=0;i<bricks.length;i++){
@@ -48,6 +50,7 @@ gameloop.render = function(){
 		
 	}
 	
+	scoreRender(gameloop.ctx)
 	
 }
 gameloop.resize = function(){
