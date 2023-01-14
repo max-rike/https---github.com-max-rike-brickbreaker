@@ -14,16 +14,22 @@ class GameLoop{
 	}
 	
 	start(){
+		if(gameStarted===true){
+		this.toggleScreen('start-screen',false);
+		this.toggleScreen('canvas',true);
+		}
+		else {
 		this.toggleScreen('start-screen',false);
 		this.toggleScreen('canvas',true);
 		this.prepareCanvas();
 		this.init();
+		gameStarted = true
 		this.loop = setInterval(() => {
 		if(breakOn===false)	this.update();
 		else{
 			if(breakCount<timeBreak){
 				breakCount++
-				console.log(breakCount)
+				console.log(4-Math.round((24+breakCount)/50))
 			}
 			else if(breakCount>= timeBreak){
 				breakCount = 0;
@@ -34,7 +40,7 @@ class GameLoop{
 		this.render();
 
 
-	},1000/this.fps);
+	},1000/this.fps);}
 	}
 
 	toggleScreen(id,toggle){

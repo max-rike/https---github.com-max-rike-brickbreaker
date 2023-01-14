@@ -1,6 +1,7 @@
 let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
+let gameStarted = false;
 let brickCount = 1;
 let breakOn = false;
 let breakCount = 0;
@@ -15,7 +16,7 @@ inactionKeys = [];
 
 //update the spawner to more randomized set ups, and when a limit of bricks are spawned bricks start getting more health
 //balls speed up netween levels or over time
-//balls ocasionally break two bricks, balls are speeding up between rounds
+//balls ocasionally break two bricks
 // add a fullscreen option undersetting page
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
@@ -32,7 +33,6 @@ gameloop.update = function(){
 					lives--
 					breakOn = true;}
 					else if(balls.length<= 0 && lives <= 0 ){
-						breakOn = true;
 						gameloop.toggleScreen('start-screen',true)
 						gameloop.toggleScreen('canvas',false);
 					}
@@ -84,7 +84,9 @@ function startGame(){
 	gameloop.start();
 	if(bricks.length===0){spawner(brickCount);}
 	lives = 2;
-	balls.push(new Ball(canvas.width/2,canvas.height/2,.12,.12));
+	if(balls.length===0)balls.push(new Ball(canvas.width/2,canvas.height/2,.12,.12));
+	else{balls.splice(0,balls.length)
+		balls.push(new Ball(canvas.width/2,canvas.height/2,.12,.12))}
 }
 function settings(){
 	settingPage.startSettings();
