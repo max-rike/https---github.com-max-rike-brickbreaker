@@ -1,7 +1,7 @@
 class Ball{
 	constructor(){
-		this.xPos = 0;
-		this.yPos = 0;
+		this.xPos = canvas.width/2;
+		this.yPos = canvas.height/2;
 		this.xVel = .12;
 		this.yVel = .12;
 		this.size= 30;
