@@ -14,15 +14,16 @@ gameloop.init = function(){
  
 }
 gameloop.update = function(){
-	for(j=40; j >=0;j--){
-		
-	ball.update(canvas);
-	paddl.update(canvas);
-	for(i=0;i<bricks.length;i++){
-		bricks[i].update(canvas);
+	if(bricks.length>0){
+		for(j=40; j >=0;j--){
+			
+		ball.update(canvas);
+		paddl.update(canvas);
+		for(i=0;i<bricks.length;i++){
+			bricks[i].update(canvas);
+		}
+		}
 	}
-	}
-	
 }
 gameloop.render = function(){
 	gameloop.ctx.fillStyle = '#1bafbd'
@@ -51,7 +52,7 @@ window.onresize = function() {
 function startGame(){
 	console.log('startGame')
 	gameloop.start();
-	if(bricks.length===0){spawner(96);}
+	if(bricks.length===0){spawner(1);}
 }
 function settings(){
 	console.log('startsettings')
