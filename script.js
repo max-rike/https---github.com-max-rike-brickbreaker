@@ -1,14 +1,14 @@
 let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
-let brickCount = 1
+let brickCount = 20
 let paddl = new paddle(30,400);
 let balls = [];
 let bricks = [];
 actionKeys = [];
 inactionKeys = [];
 
-
+//make sure bounce isnt taking off multiple levels
 
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
