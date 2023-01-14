@@ -4,14 +4,16 @@ let settingPage = new SettingPage();
 let brickCount = 20;
 let score = 0;
 let paddl = new paddle(30,400);
+let lives = 2;
 let balls = [];
 let bricks = [];
 actionKeys = [];
 inactionKeys = [];
 
-//next update the spawner to more randomized set ups, and when a limit of bricks are spawned bricks start getting more health
+//update the spawner to more randomized set ups, and when a limit of bricks are spawned bricks start getting more health
 //put a breif break in between levels  balls speed up netween levels or over time
 //balls ocasionally break two bricks
+// add a gameover,break in between lives, reset button, and a fullscreen option undersetting page
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
 	balls[i].init(gameloop.canvas);
@@ -22,7 +24,14 @@ gameloop.update = function(){
 	if(bricks.length>0){
 		for(j=40; j >=0;j--){
 		for(k=0;k<balls.length;k++){
-			if(balls[k].markedForDeletion===true)balls.splice(k,1)
+			if(balls[k].markedForDeletion===true){balls.splice(k,1)
+				if(balls.length <= 0 && lives<= 0 ){}
+				else if(balls.length <= 0 && lives> 0){
+					lives--
+					balls.push(new Ball(canvas.width/2,this.canvas.height/2, .12,.12))
+				}
+
+			}
 			else balls[k].update(canvas)
 		}
 		paddl.update(canvas);
