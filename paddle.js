@@ -15,7 +15,7 @@ class paddle{
 	}
     update(canvas){
         
-        if(actionKeys.includes('w') && this.yPos>20){
+        if(actionKeys.includes('w') && this.yPos>50){
              this.yPos -= .1;
         }
 		

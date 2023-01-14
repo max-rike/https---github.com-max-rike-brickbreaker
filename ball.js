@@ -41,7 +41,7 @@ class Ball{
 			this.markedForDeletion = true;
 			
 		}
-		if(this.yPos-this.size < 0 || this.yPos+this.size > canvas.height){
+		if(this.yPos-this.size < 50 || this.yPos+this.size > canvas.height){
 			this.yVel = this.yVel*-1;
 		}
 		

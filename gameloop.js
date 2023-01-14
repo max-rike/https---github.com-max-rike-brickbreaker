@@ -19,8 +19,18 @@ class GameLoop{
 		this.prepareCanvas();
 		this.init();
 		this.loop = setInterval(() => {
-		
-		this.update();
+		if(breakOn===false)	this.update();
+		else{
+			if(breakCount<timeBreak){
+				breakCount++
+				console.log(breakCount)
+			}
+			else if(breakCount>= timeBreak){
+				breakCount = 0;
+				breakOn = false;
+				if(lives>=0 && balls.length<=0)balls.push(new Ball(canvas.width/2,this.canvas.height/2, .12,.12))
+			}
+		}
 		this.render();
 
 

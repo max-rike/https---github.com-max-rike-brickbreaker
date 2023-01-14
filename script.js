@@ -1,19 +1,22 @@
 let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
-let brickCount = 20;
+let brickCount = 1;
+let breakOn = false;
+let breakCount = 0;
+let timeBreak = 150;
 let score = 0;
 let paddl = new paddle(30,400);
-let lives = 2;
+let lives = -1;
 let balls = [];
 let bricks = [];
 actionKeys = [];
 inactionKeys = [];
 
 //update the spawner to more randomized set ups, and when a limit of bricks are spawned bricks start getting more health
-//put a breif break in between levels  balls speed up netween levels or over time
-//balls ocasionally break two bricks
-// add a gameover,break in between lives, reset button, and a fullscreen option undersetting page
+//balls speed up netween levels or over time
+//balls ocasionally break two bricks, balls are speeding up between rounds
+// add a fullscreen option undersetting page
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
 	balls[i].init(gameloop.canvas);
@@ -25,12 +28,14 @@ gameloop.update = function(){
 		for(j=40; j >=0;j--){
 		for(k=0;k<balls.length;k++){
 			if(balls[k].markedForDeletion===true){balls.splice(k,1)
-				if(balls.length <= 0 && lives<= 0 ){}
-				else if(balls.length <= 0 && lives> 0){
+					if(balls.length <= 0 && lives >0){
 					lives--
-					balls.push(new Ball(canvas.width/2,this.canvas.height/2, .12,.12))
-				}
-
+					breakOn = true;}
+					else if(balls.length<= 0 && lives <= 0 ){
+						breakOn = true;
+						gameloop.toggleScreen('start-screen',true)
+						gameloop.toggleScreen('canvas',false);
+					}
 			}
 			else balls[k].update(canvas)
 		}
@@ -42,8 +47,7 @@ gameloop.update = function(){
 	}
 	else{
 		if(balls.length>1)balls.splice(1,balls.length-1)
-		
-		console.log(balls.length)
+		breakOn=true;
 		Reset();
 	}
 }
@@ -77,13 +81,12 @@ window.onresize = function() {
 }
 
 function startGame(){
-	console.log('startGame')
 	gameloop.start();
 	if(bricks.length===0){spawner(brickCount);}
+	lives = 2;
 	balls.push(new Ball(canvas.width/2,canvas.height/2,.12,.12));
 }
 function settings(){
-	console.log('startsettings')
 	settingPage.startSettings();
 }
 function returnToMain(){
