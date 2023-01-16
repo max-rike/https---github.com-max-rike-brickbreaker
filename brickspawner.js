@@ -1,6 +1,6 @@
 function spawner(limit){
     limits = limit;
-    xposition = canvas.width - (40) ;
+    xposition = canvas.width - (340) ;
     yposition = 65;
     
     for(i = limits;i>0;i--){

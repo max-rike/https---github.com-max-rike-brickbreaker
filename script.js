@@ -2,7 +2,7 @@ let gameloop = new GameLoop();
 let input = new InputHandler();
 let settingPage = new SettingPage();
 let gameStarted = false;
-let brickCount = 1;
+let brickCount = 33;
 let breakOn = false;
 let breakCount = 0;
 let timeBreak = 150;
@@ -18,6 +18,8 @@ inactionKeys = [];
 //balls speed up netween levels or over time
 //balls ocasionally break two bricks
 // add a fullscreen option undersetting page
+//make it so the ball cant hit corners of bricks when theres a brick beside it
+//make it so when the back wall is hit a random brick takes a dmg
 gameloop.init = function(){
 	for(i=0;i<balls.length;i++){
 	balls[i].init(gameloop.canvas);

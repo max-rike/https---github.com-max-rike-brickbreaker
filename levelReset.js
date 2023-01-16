@@ -5,7 +5,7 @@ function Reset(){
     balls[0].xVel = .12;
     balls[0].yVel = .12;
     
-    brickCount += 12
+    brickCount += 11
     spawner(brickCount);
     
 
